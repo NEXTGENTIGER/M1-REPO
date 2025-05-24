@@ -1,11 +1,9 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
-RUN apt-get update && apt-get install -y nmap && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-RUN pip install python-nmap
+RUN apt-get update && apt-get install -y nmap && pip install python-nmap
 
 WORKDIR /app
 
 COPY scanner.py .
 
-CMD ["python3", "scanner.py"]
+CMD ["python3", "/app/scanner.py"]
