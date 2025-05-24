@@ -1,22 +1,11 @@
-FROM parrotsec/core:latest
+FROM python:3.10-slim
 
-ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y nmap && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Mise à jour + installation des outils sécurité et Python
-RUN apt-get update && apt-get install -y \
-    metasploit-framework \
-    nmap \
-    wireshark-common \
-    tshark \
-    zaproxy \
-    python3 \
-    python3-pip \
-    && pip3 install python-nmap \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN pip install python-nmap
 
-# Copier ton script de scan dans le conteneur
-#COPY scanner.py /root/scanner.py
-#WORKDIR /root
+WORKDIR /app
 
-# Commande par défaut
-CMD ["/bin/bash"]
+COPY scanner.py .
+
+CMD ["python3", "scanner.py"]
