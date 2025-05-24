@@ -29,6 +29,16 @@ services:
       - NET_ADMIN
     networks:
       - secnet
+      
+ zap:
+  build:
+    context: .
+    dockerfile: Dockerfile.zap
+  container_name: zap
+  ports:
+    - "8090:8090"
+  networks:
+    - secnet
 
 networks:
   secnet:
