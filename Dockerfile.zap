@@ -1,6 +1,6 @@
 FROM openjdk:11-jre-slim
 
-ENV ZAP_VERSION=2.14.0
+ENV ZAP_VERSION=2.13.0
 ENV ZAP_HOME=/zap
 
 RUN apt-get update && \
