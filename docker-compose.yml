@@ -31,12 +31,12 @@ services:
       - secnet
 
   zap:
-    build:
-      context: .
-      dockerfile: Dockerfile.zap
+    image: zaproxy/zap-stable
     container_name: zap
     ports:
       - "8090:8090"
+    command: ["zap.sh", "-daemon", "-host", "0.0.0.0", "-port", "8090"]
+    user: "zap"
     networks:
       - secnet
 
