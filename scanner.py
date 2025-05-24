@@ -2,16 +2,11 @@ import nmap
 import json
 import sys
 
-if len(sys.argv) != 2:
-    print("Usage: python scanner.py <IP>")
-    sys.exit(1)
-
-target_ip = sys.argv[1]
-
+target = sys.argv[1] if len(sys.argv) > 1 else "127.0.0.1"
 scanner = nmap.PortScanner()
-scanner.scan(target_ip, arguments="-sV")
+scanner.scan(target, arguments="-sV")
 
-with open("result.json", "w") as f:
+with open("/app/results/result.json", "w") as f:
     json.dump(scanner._scan_result, f, indent=2)
 
-print(f"Scan terminé pour {target_ip}, résultats enregistrés dans result.json")
+print(f"Scan completed for {target}. Output saved in result.json.")
