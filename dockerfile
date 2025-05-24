@@ -15,8 +15,8 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copier ton script de scan dans le conteneur
-COPY scanner.py /root/scanner.py
-WORKDIR /root
+#COPY scanner.py /root/scanner.py
+#WORKDIR /root
 
 # Commande par défaut
 CMD ["/bin/bash"]
